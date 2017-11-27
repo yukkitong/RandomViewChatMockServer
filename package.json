@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chalk": "^2.3.0",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.9.0",
+    "object-hash": "^1.2.0",
+    "password-hash": "^1.2.2",
+    "pug": "^2.0.0-rc.4"
+  }
+}

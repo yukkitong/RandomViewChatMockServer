@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "794d9ca0feacdf67c3945760804985007a51e704",
+      "email": "jason98.bae@gmail.com",
+      "password": "sha1$e720585a$1$5dc2c6275fa350966dd412e3dc04762473e92016",
+      "gender": "male",
+      "age": 39
+    }
+  ]
+}
