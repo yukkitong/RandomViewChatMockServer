@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const hash = require('password-hash').generate
 const morgan = require('morgan')
 const chalk = require('chalk')
+const authRouter = require('./auth')
+const protected = require('./auth/middleware')
 const db = require('./db')
 
 const server = express()
@@ -27,5 +29,16 @@ server.post('/user', (req, res, next) => {
   })
 })
 
+server.use('/api', authRouter)
+
+server.use(protected)
+
+
+
+// TODO Some protected API goes here
+
+
+
 const PORT = process.env.PORT || 3333
-server.listen(PORT, () => console.log(`Server is running on port ${chalk.cyan(PORT)}...\n`))
+server.listen(PORT, () => 
+  console.log(`Server is running on port ${chalk.cyan(PORT)}...\n`))

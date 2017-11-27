@@ -10,3 +10,17 @@ Content-Type: application/json
   "gender": "male",
   "age": 39
 }
+
+###
+POST http://localhost:3333/api/login
+Content-Type: application/json
+
+{
+  "email": "jason98.bae@gmail.com",
+  "password": "sung1761"
+}
+
+
+###
+GET http://localhost:3333/api/protected
+Authorization: JWT eyJhbGciOiJIUzI1NiJ9.c29tZSBwYXlsb2Fk.TqRWoJaQfuYTiogiuQ7KSajkqNmMKi7YQwwDUunRcgA
