@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const secretKey = require('./secret')
+
 module.exports = middleware
+
 function middleware(req, res, next) {
   var authorization = req.get('Authorization')
   if (!authorization) {
