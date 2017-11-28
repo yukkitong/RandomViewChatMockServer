@@ -6,20 +6,20 @@ module.exports = middleware
 function middleware(req, res, next) {
   var authorization = req.get('Authorization')
   if (!authorization) {
-    sendNotAllowed(res)
+    sendForbidden(res)
     return;
   }
 
   var scheme = authorization.split(' ')[0],
       token = authorization.split(' ')[1]
   if (scheme !== 'JWT' || token === '') {
-    sendNotAllowed(res)
+    sendForbidden(res)
     return;
   }
 
   jwt.verify(token, secretKey, (error, decoded) => {
     if (error) {
-      sendNotAllowed(res)
+      sendForbidden(res)
     } else {
       req.tokenPayload = decoded
       next()
@@ -27,8 +27,8 @@ function middleware(req, res, next) {
   })
 }
 
-function sendNotAllowed(res) {
-  res.status(401).json({
-    message: 'Not allowed'
+function sendForbidden(res) {
+  res.status(403).json({
+    message: 'Forbidden'
   })
 }

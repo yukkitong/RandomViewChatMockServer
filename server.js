@@ -19,13 +19,22 @@ server.get('/users', (req, res) => {
 })
 
 server.post('/user', (req, res, next) => {
-  var user = Object.assign({}, 
-    req.body, 
-    { password: hash(req.body.password) }
-  )
-  var id = db.putUser(user)
-  res.status(200).json({
-    message: "ok", id
+
+  let { email, password } = req.body
+
+  let user = db.getUserByEmail(email)
+  if (user) {
+    // conflict
+    res.status(409).json({
+      message: 'Conflict'
+    })
+    return;
+  }
+
+  user = Object.assign({}, req.body, { password: hash(password) })
+  // created
+  res.status(201).json({
+    message: 'ok', id: db.putUser(user)
   })
 })
 
@@ -38,6 +47,12 @@ server.use(protected)
 // TODO Some protected API goes here
 
 
+
+server.use((req, res, next) => {
+  res.status(404).json({
+    message: 'Not found'
+  })
+})
 
 const PORT = process.env.PORT || 3333
 server.listen(PORT, () => 
