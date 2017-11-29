@@ -17,9 +17,11 @@ router.post('/login', (req, res, next) => {
   }
 
   if (verify(password, user.password)) {
+    delete user.password
+    var payload = Object.assign({}, user)
     res.status(200).json({
       message: 'ok' , 
-      token: jwtsign('some payload', secretKey)
+      token: jwtsign(JSON.stringify(payload), secretKey)
     })
   } else {
     res.status(401).json({
