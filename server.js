@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const hash = require('password-hash').generate
 const morgan = require('morgan')
 const chalk = require('chalk')
 const authRouter = require('./auth')
@@ -30,10 +29,10 @@ server.post('/user', (req, res, next) => {
     return;
   }
 
-  user = { email, password: hash(password) }
+  let newUser = { email, password }
   // created
   res.status(201).json({
-    message: 'ok', id: db.putUser(user)
+    message: 'ok', id: db.putUser(newUser)
   })
 })
 

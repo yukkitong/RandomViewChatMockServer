@@ -1,11 +1,10 @@
 {
   "users": [
     {
-      "id": "794d9ca0feacdf67c3945760804985007a51e704",
+      "id": "2569216935f126389df3281d1bc85806afb2cbe5",
+      "created": 1511945073239,
       "email": "jason98.bae@gmail.com",
-      "password": "sha1$e720585a$1$5dc2c6275fa350966dd412e3dc04762473e92016",
-      "gender": "male",
-      "age": 39
+      "password": "sha1$2b9b195d$1$b56afe43fbffc227b9e39d2b86ac71e50c0c6148"
     }
   ]
 }

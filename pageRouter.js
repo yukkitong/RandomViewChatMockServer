@@ -33,7 +33,7 @@ page.post('/user', (req, res, next) => {
     return;
   }
 
-  let newUser = { email, password: hash(password) }
+  let newUser = { email, password }
   // created
   res.json({
     message: 'ok', id: db.putUser(newUser)

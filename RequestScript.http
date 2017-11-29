@@ -8,7 +8,8 @@ Content-Type: application/json
   "email": "jason98.bae@gmail.com",
   "password": "sung1761",
   "gender": "male",
-  "age": 39
+  "age": 39,
+  "country": "South Korea"
 }
 
 ###
