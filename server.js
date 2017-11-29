@@ -4,6 +4,7 @@ const hash = require('password-hash').generate
 const morgan = require('morgan')
 const chalk = require('chalk')
 const authRouter = require('./auth')
+const pageRouter = require('./pageRouter')
 const protected = require('./auth/middleware')
 const db = require('./db')
 
@@ -19,9 +20,7 @@ server.get('/users', (req, res) => {
 })
 
 server.post('/user', (req, res, next) => {
-
   let { email, password } = req.body
-
   let user = db.getUserByEmail(email)
   if (user) {
     // conflict
@@ -31,21 +30,19 @@ server.post('/user', (req, res, next) => {
     return;
   }
 
-  user = Object.assign({}, req.body, { password: hash(password) })
+  user = { email, password: hash(password) }
   // created
   res.status(201).json({
     message: 'ok', id: db.putUser(user)
   })
 })
 
+server.use('/page', pageRouter)
 server.use('/api', authRouter)
-
 server.use(protected)
 
 
-
 // TODO Some protected API goes here
-
 
 
 server.use((req, res, next) => {
